@@ -1,13 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SmartServe</title>
-    <link rel="stylesheet" href="../css/index.css">
-</head>
-<body>
-    <h1>Hello, Let's Code....</h1>
-</body>
-<script src="../javascript/index.js"></script>
+    <link rel="stylesheet" href="../css/index.css" />
+  </head>
+  <body>
+    <nav style="text-align: center;">
+      <div class="name">Smart Serve</div>
+      <div class="container-search">
+        <form class="filter">
+          <!-- Filtering part Start on Search  -->
+          <div class="items" style="margin-top: 10px;">
+            <!--Filter on Rating-->
+            <label>Rating</label>
+            <input type="number" name="rating" />
+          </div>
+          <!-- End Filter on Rating-->
+
+          <div class="items" style="margin-top: 10px;">
+            <!--Filter on Search by area-->
+            <label>Area</label>
+            <input type="text" name="area" />
+          </div>
+          <!--End Filter on Availability-->
+          <div class="items" >
+            <!--Filter on Search by area-->
+                <!-- <button class="btn-availability" style="margin-top: 10px;" onclick="SearchFilters('online')" value="online">Online</button> -->
+          </div>
+          <!--End Filter on Availability-->
+          <div class="items submit">
+            <button>Search</button>
+        </div>
+        </form>
+      </div>
+    </nav>
+<!--Nav bar end-->
+
+
+    <div id="list" style="display: flex;justify-content: space-evenly; margin-top: 30px;">
+        <div class="card"> <!--For 1st-->
+            <div class="title"></div>
+            <div class="role"> </div>
+            <div class="rating">  </div>
+            <div class="btn"><button></button></div>
+        </div>
+       
+    </div>
+  </body>
+  <script src="../javascript/index.js"></script>
 </html>
