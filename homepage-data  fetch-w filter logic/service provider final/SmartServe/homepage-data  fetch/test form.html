@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-width: 400px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Service Submission Form</h2>
+<form id="serviceForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="service">Service Provided:</label>
+    <input type="text" id="service" name="service" required>
+
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" required>
+
+    <label for="contact">Contact No:</label>
+    <input 
+        type="text" 
+        id="contact" 
+        name="contact" 
+        maxlength="10" 
+        pattern="\d{10}" 
+        title="Please enter a 10-digit contact number" 
+        oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
+    >
+
+    <label for="price">Price:</label>
+    <input 
+        type="number" 
+        id="price" 
+        name="price" 
+        required 
+        min="0" 
+        step="0.01" 
+        placeholder="Enter price" 
+    >
+
+    <label for="desc">Description:</label>
+    <textarea id="desc" name="desc" rows="4" required></textarea>
+
+    <label for="picture">Upload Picture:</label>
+    <input type="file" id="picture" name="picture" accept="image/*" required>
+
+    <button type="submit">Save</button>
+</form>
+
+<script>
+ document.getElementById('serviceForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const pictureInput = document.getElementById('picture');
+    const file = pictureInput.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = function() {
+        const formData = {
+            username: document.getElementById('username').value,
+            service: document.getElementById('service').value,
+            address: document.getElementById('address').value,
+            contact: document.getElementById('contact').value,
+            price: document.getElementById('price').value,
+            desc: document.getElementById('desc').value,
+            picture: reader.result // Store image as Base64 string
+        };
+
+        // Retrieve existing data and ensure it's an array
+        let existingData = JSON.parse(localStorage.getItem('serviceFormData'));
+        
+        if (!Array.isArray(existingData)) {
+            existingData = existingData ? [existingData] : []; // Convert to array if not already
+        }
+        
+        existingData.push(formData); // Add new entry to the array
+
+        // Save updated array back to local storage
+        localStorage.setItem('serviceFormData', JSON.stringify(existingData));
+        console.log("Data saved to local storage:", formData); // Debug log
+
+        document.getElementById('serviceForm').reset();
+        alert('Data saved to local storage!');
+    };
+
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+        alert('Please upload an image.');
+    }
+});
+
+</script>
+
+</body>
+</html>

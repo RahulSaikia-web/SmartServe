@@ -1,0 +1,4 @@
+name,email,availability,role,pincode
+Alice,alice.smith@example.com,TRUE,plumber,785602
+Bob,bob.johnson@example.com,FALSE,cleaner,785621
+Dog,dog@mail.com,TRUE,electrician,789602
