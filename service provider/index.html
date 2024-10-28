@@ -32,64 +32,71 @@
     </ul>
   </nav>
   <main>
+   <form action="">
     <div id="Profile" class="profile-card">
+
+      <!--First Information div-->
       <div class="profile-header">
-          <div class="upload-photo" onclick="document.getElementById('file-input').click()">
+          <!-- <div class="upload-photo" onclick="document.getElementById('file-input').click()">
               <input type="file" id="file-input" style="display:none" accept="image/*" onchange="previewPhoto(event)" disabled>
-              <span class="plus-sign">+</span>
-              <img id="photo-preview" class="photo-preview" src="" alt="Profile Photo Preview">
-              <button class="delete-photo" id="delete-photo" onclick="deletePhoto(event)">×</button>
-          </div>
-          <span class="visible-text username-span">Username</span>
-          <input type="text" class="username" placeholder="Username" disabled>
+          </div> -->
+          <img src="" alt="" id="img">
+          <span class="visible-text username-span">ABCD</span>
       </div>
+      <!--First Information div end-->
+
+      <!--Second information-->
       <div class="email-field">
           <label for="email" class="label">Email:</label>
-          <span class="visible-text email-span">you@example.com</span>
-          <input type="email" id="email" class="email" placeholder="you@example.com" disabled>
+          <span class="visible-text email-span"></span>
       </div>
+      <!--Second information end-->
+<!---3rd information -->
       <div class="dob-field">
           <label for="dob" class="label">Date of Birth:</label>
-          <span class="visible-text dob-span">January 1, 1990</span>
-          <input type="date" id="dob" class="dob" placeholder="Date of Birth" disabled>
+          <span class="visible-text dob-span"></span>
       </div>
+<!---3rd information end -->
+
+<!--4th information-->
       <div class="services-field">
           <label for="services" class="label">Services Provided:</label>
-          <span class="visible-text services-span">Web Development</span>
-          <input type="text" id="services" class="services" placeholder="Services Provided" disabled>
+          <span class="visible-text services-span"></span>
+          <!-- <input type="text" id="services" class="services" placeholder="Services Provided" disabled> -->
       </div>
+<!--4th information end-->
+
       <div class="profile-info">
-          <p class="date-joined">Date Joined: <span>March 15, 2022</span></p>
-          <p class="services-fulfilled">Services Fulfilled: <span>50</span></p>
-          <p class="ratings">Ratings: <span>★★★★☆ (4.5/5)</span></p>
-      </div>
-      <div class="button-container">
-          <button class="button edit-button" onclick="enableEditing()">Edit</button>
+          <p class="date-joined" style="color: black;">Date Joined: <span></span></p>
+          </div>
+          <!-- <div class="profile-info profile-info2">
+            <p class="services-fulfilled" style="color: black;">Services Fulfilled: <span>50</span></p>
+          </div> -->
+
+          <div class="profile-info profile-info3"> 
+          <p class="ratings" style="color: black;">Ratings: <span></span></p>
+        </div>
+      <!-- <div class="button-container">
+          <button class="button edit-button" onclick="enableEditing()">Edit</button> ★★★★☆ (4.5/5)
           <button class="button save-button" id="save-button" onclick="saveChanges()">Save</button>
-      </div>
+      </div> -->
   </div>
+   </form>
     
   <!--orders-->
   <div id="Orders">
-  <h1>Customer Orders</h1>
+  <h1 style="margin-bottom: 50px;margin-top: -300px;">Customer Orders</h1>
 
-  <div class="order-container">
-    <div class="order-header">Order #1</div>
-    <div class="order-detail"><strong>Name:</strong> John Doe</div>
-    <div class="order-detail"><strong>Phone:</strong> (123) 456-7890</div>
-    <div class="order-detail"><strong>Services Needed:</strong> Cleaning, Maintenance</div>
-    <div class="order-detail"><strong>Address:</strong> 123 Main St, Anytown, USA</div>
-    <div class="order-detail"><strong>Time:</strong> 10:00 AM, Oct 30, 2024</div>
+  <div class="order-container" style="margin-top: 20px;">
+    <!-- <div class="order-header">Order #1</div> -->
+    <div class="order-detail name"><strong>Name:</strong> <span></span></div>
+    <div class="order-detail phone"><strong>Phone:</strong> <span></span></div>
+    <div class="order-detail service"><strong>Services Needed:</strong> <span></span></div>
+    <div class="order-detail address"><strong>Address:</strong> <span></span></div>
+    <div class="order-detail time"><strong>Time:</strong> <span></span></div>
   </div>
 
-  <div class="order-container">
-    <div class="order-header">Order #2</div>
-    <div class="order-detail"><strong>Name:</strong> Jane Smith</div>
-    <div class="order-detail"><strong>Phone:</strong> (987) 654-3210</div>
-    <div class="order-detail"><strong>Services Needed:</strong> Delivery</div>
-    <div class="order-detail"><strong>Address:</strong> 456 Elm St, Othertown, USA</div>
-    <div class="order-detail"><strong>Time:</strong> 2:00 PM, Oct 30, 2024</div>
-  </div>
+
   </div>
 </main>
 </body>
