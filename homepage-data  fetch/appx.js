@@ -30,36 +30,47 @@ function closeAllSubMenus(){
   })
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  const formDataArray = JSON.parse(localStorage.getItem('serviceFormData')) || [];
-  const container = document.getElementById('dataContainer');
-  const searchInput = document.getElementById('searchInput');
 
-  // Function to display entries
-  function displayEntries() {
-      container.innerHTML = ''; // Clear existing content
+//Fetch information from database ( Start)
+let serviceProvider = [];
+let toAppend = document.getElementById("dataContainer"); // Make sure this matches your HTML element ID
 
-      formDataArray.forEach(formData => {
-          const dataDiv = document.createElement('div');
-          dataDiv.classList.add('data-entry');
-
-          dataDiv.innerHTML = `
-              <img src="${formData.picture}" alt="Uploaded Image">
-              <div class="data-info">
-                  <h1>${formData.service} <br></h1> <h4>by ${formData.username}</h4>
-                  <h3>₹ ${formData.price}</h3>
-                  <p><strong>Address:</strong> ${formData.address}</p>
-                  <p><strong>Contact No:</strong> ${formData.contact}</p>
-                  <p><strong>Description:</strong> ${formData.desc}</p>
-              </div>
-          `;
-
-          container.appendChild(dataDiv);
-      });
-  }
 
   // Initial display of all entries
   displayEntries();
+function displayEntries() {
+  fetch("") // Replace 'YOUR_API_URL_HERE' with your actual API endpoint
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((json) => {
+        serviceProvider = json;
+
+      // Clear previous content (if any)
+      toAppend.innerHTML = "";
+
+      // Append provider information
+      for (let infos of serviceProvider) {
+        toAppend.innerHTML += `
+           <img src="${infos.img}" alt="Uploaded Image">
+              <div class="data-info">
+                  <h1>${infos.service_type} <br></h1> <h4>by ${infos.username}</h4>
+                  <h3>₹ ${infos.price}</h3>
+                  <p><strong>Address:</strong> ${infos.city}</p>
+                  <p><strong>Contact No:</strong> ${infos.contact_phone}</p>
+                  <p><strong>Description:</strong> ${infos.bio}</p>
+              </div>
+        `;
+      }
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
+    });
+}
+
 
   // Search functionality
   searchInput.addEventListener('input', function() {
@@ -85,5 +96,4 @@ document.addEventListener('DOMContentLoaded', function() {
           }
       });
   });
-});
 
