@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "csvtojson": "^2.0.10",
+    "express": "^4.21.1",
+    "mongoose": "^8.7.3",
+    "moongose": "^1.0.0",
+    "multer": "^1.4.5-lts.1"
+  }
+}
