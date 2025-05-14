@@ -3,6 +3,8 @@ import Home from "./pages/Home/Home"
 import Cart from "./pages/cart/Cart"
 import Login from "./pages/Login/Login"
 import Register from "./pages/Register/Register"
+import ForgotPassword from "./pages/ForgotPass/ForgotPassword"
+import Profile from "./pages/Profile/Profile"
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
+        <Route path="/forgot" element={<ForgotPassword/>}/>
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
     </BrowserRouter>
   )

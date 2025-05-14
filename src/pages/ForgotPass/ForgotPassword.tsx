@@ -1,28 +1,19 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { PhoneIcon, LockClosedIcon, EyeIcon, EyeSlashIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { EnvelopeIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from 'react-router-dom';
 
-const Login: React.FC = () => {
-  const [phone, setPhone] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+const ForgotPassword: React.FC = () => {
+  const [email, setEmail] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const navigate = useNavigate();
-
-  const handlePhoneKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const charCode = e.charCode || e.key.charCodeAt(0);
-    if (charCode < 48 || charCode > 57) {
-      e.preventDefault();
-    }
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
-      console.log('Login attempted with:', { phone, password });
+      console.log('Password reset requested for:', { email });
     }, 1000);
   };
 
@@ -61,48 +52,21 @@ const Login: React.FC = () => {
           <span className="text-sm font-medium">Back to Home</span>
         </motion.button>
 
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8 mt-10">Welcome Back</h2>
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8 mt-10">Reset Your Password</h2>
         
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="relative">
-            <PhoneIcon className="absolute top-3 left-3 h-5 w-5 text-gray-400" />
+            <EnvelopeIcon className="absolute top-3 left-3 h-5 w-5 text-gray-400" />
             <motion.input
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              onKeyPress={handlePhoneKeyPress}
-              pattern="[0-9]*"
-              placeholder="Phone Number"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email Address"
               className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
               required
               variants={inputVariants}
               whileFocus="focus"
             />
-          </div>
-
-          <div className="relative">
-            <LockClosedIcon className="absolute top-3 left-3 h-5 w-5 text-gray-400" />
-            <motion.input
-              type={showPassword ? 'text' : 'password'}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              className="w-full pl-10 pr-10 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
-              required
-              variants={inputVariants}
-              whileFocus="focus"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute top-2 right-2 p-1"
-            >
-              {showPassword ? (
-                <EyeSlashIcon className="h-5 w-5 text-gray-400" />
-              ) : (
-                <EyeIcon className="h-5 w-5 text-gray-400" />
-              )}
-            </button>
           </div>
 
           <motion.button
@@ -120,16 +84,16 @@ const Login: React.FC = () => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                 >
-                  Signing In...
+                  Sending...
                 </motion.span>
               ) : (
                 <motion.span
-                  key="signin"
+                  key="reset"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                 >
-                  Sign In
+                  Send Reset Link
                 </motion.span>
               )}
             </AnimatePresence>
@@ -137,15 +101,10 @@ const Login: React.FC = () => {
         </form>
 
         <div className="mt-6 text-center">
-          <a href="/forgot" className="text-sm text-blue-600 hover:underline">
-            Forgot Password?
-          </a>
-        </div>
-        <div className="mt-2 text-center">
           <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
-            <a href="/register" className="text-blue-600 hover:underline">
-              Sign Up
+            Remember your password?{' '}
+            <a href="/login" className="text-blue-600 hover:underline">
+              Sign In
             </a>
           </p>
         </div>
@@ -154,4 +113,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;
