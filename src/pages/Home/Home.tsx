@@ -1,9 +1,10 @@
+import HeroSection from '../../components/HeroSection/HeroSection'
 import Layout from '../../Layout/Layout'
 
 function Home() {
   return (
     <Layout>
-      <h1>Hello</h1>
+      <HeroSection/>
     </Layout>
   )
 }
