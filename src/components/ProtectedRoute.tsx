@@ -1,11 +1,34 @@
-import React from 'react'
+// src/components/ProtectedRoute.tsx
+import { Navigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext"; // Adjust based on your auth setup
+import type { JSX } from "react";
 
-function ProtectedRoute() {
-  return (
-    <div>
-      
-    </div>
-  )
+interface ProtectedRouteProps {
+  children: JSX.Element;
+  redirectTo?: string; // Optional prop to control redirect behavior
 }
 
-export default ProtectedRoute
+const ProtectedRoute = ({ children, redirectTo }: ProtectedRouteProps) => {
+  const auth = useContext(AuthContext); // Replace with your auth mechanism
+
+  // If not authenticated, redirect to login
+  if (!auth?.user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  // If redirectTo is provided and matches user role, redirect
+  if (redirectTo) {
+    if (auth.user.isAdmin && redirectTo === "/admin-dashboard") {
+      return <Navigate to="/admin-dashboard" replace />;
+    }
+    if (!auth.user.isAdmin && redirectTo === "/profile") {
+      return <Navigate to="/profile" replace />;
+    }
+  }
+
+  // Render children for protected routes
+  return children;
+};
+
+export default ProtectedRoute;
